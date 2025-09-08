@@ -2,18 +2,6 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
- 
-
-
-export async function generateMetadata() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts?limit=5")
-  const post = await res.json()
-
-  return {
-    title: `${post.title} | My Blog`,
-    description: post.body.slice(0, 100),
-  }
-}
 
 export default async function Home() {
   const res= await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5",{cache:"force-cache"});//no store for SSR

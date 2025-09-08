@@ -2,20 +2,7 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
-//Static
-export async function getStaticProps(){
-  const res= await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
-  const posts=await res.json();
-  return {props:{posts}};
-}
-/* 
-//Server-side
-export async function getServerSideProps(){
-  const res= await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5",{cache:"no-store"});
-  const posts=await res.json();
-  return {props;{posts}};
-}
-*/ 
+ 
 
 
 export async function generateMetadata() {
@@ -28,7 +15,9 @@ export async function generateMetadata() {
   }
 }
 
-export default function Home({posts}) {
+export default async function Home() {
+  const res= await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5",{cache:"force-cache"});//no store for SSR
+  const posts=await res.json();
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">My Blog</h1>

@@ -1,6 +1,6 @@
 export default function Nav(){
     return(
-        <div className="container mx-auto p-6 border-2 border-dashed rounded-3xl border-black my-4">
+        <div className="container mx-auto p-6 border-2 border-dashed rounded-3xl border-black bg-gray-400 my-4">
             <div className="flex flex-row justify-center items-center gap-10">
             <a href="/" className="font-bold transition duration-75 ease-in-out hover:underline">Home</a>
             <a href="/client-posts" className="font-bold transition duration-75 ease-in-out hover:underline">Client-Posts</a>

@@ -1,12 +1,15 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Nav from "@/components/nav";
 
 
 export default async function Home() {
   const res= await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5",{cache:"force-cache"});//no store for SSR
   const posts=await res.json();
   return (
+    <>
+    <Nav/>
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">My Blog</h1>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -23,6 +26,8 @@ export default async function Home() {
         ))}
       </div>
     </div>
+    </>
+
   );
 }
 

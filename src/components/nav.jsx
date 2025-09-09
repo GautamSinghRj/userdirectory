@@ -1,6 +1,6 @@
 export default function Nav(){
     return(
-        <div className="container mx-auto p-6 border border-black">
+        <div className="container mx-auto p-6 border border-dotted border-black my-4">
             <div className="flex flex-row justify-center items-center gap-10">
             <a href="/">Home</a>
             <a href="/client-posts">Client-Posts</a>

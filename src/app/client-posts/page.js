@@ -17,6 +17,11 @@ export default function ClientPosts(){
         {data.map((post) => (
           <Card key={post.id}>
             <CardContent className="p-4">
+            <img
+                  src={`https://picsum.photos/seed/${post.id}/600/300`}
+                  alt="Random post illustration"
+                  className="w-full h-40 object-cover rounded-md mb-3"
+                />
               <h2 className="text-lg font-semibold">{post.title}</h2>
               <p className="text-gray-600">{post.body}</p>
             </CardContent>

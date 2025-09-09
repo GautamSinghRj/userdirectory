@@ -1,6 +1,7 @@
 "use client"
 import useSWR from "swr";
 import { Card, CardContent } from "@/components/ui/card"
+import Nav from "@/components/nav";
 
 const caller=(url)=>fetch(url).then((res)=>res.json());
 
@@ -11,6 +12,8 @@ export default function ClientPosts(){
   if (!data) return <div className="text-gray-500">Loading...</div>
 
   return (
+    <>
+    <Nav/>
     <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">Client-side Posts</h1>
       <div className="space-y-4">
@@ -20,7 +23,7 @@ export default function ClientPosts(){
             <img
                   src={`https://picsum.photos/seed/${post.id}/600/300`}
                   alt="Random post illustration"
-                  className="w-full h-40 object-cover rounded-md mb-3"
+                  className="w-full h-96 object-cover rounded-md mb-3"
                 />
               <h2 className="text-lg font-semibold">{post.title}</h2>
               <p className="text-gray-600">{post.body}</p>
@@ -29,5 +32,6 @@ export default function ClientPosts(){
         ))}
       </div>
     </div>
+    </>
   )
 }

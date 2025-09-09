@@ -24,7 +24,7 @@ export default async function PostPage({params}){
             <img
                   src={`https://picsum.photos/seed/${post.id}/600/300`}
                   alt="Random post illustration"
-                  className="w-full h-40 object-cover rounded-md mb-3"
+                  className="w-full h-96 object-cover rounded-md mb-3"
                 />
             <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
             <p className="text-gray-700 leading-relaxed">{post.body}</p>

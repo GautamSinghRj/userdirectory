@@ -50,7 +50,7 @@ export default function PostByIdPage() {
           <img
                   src={`https://picsum.photos/seed/${post.id}/600/300`}
                   alt="Random post illustration"
-                  className="w-full h-40 object-cover rounded-md mb-3"
+                  className="w-full h-96 object-cover rounded-md mb-3"
                 />
             <h2 className="text-xl font-semibold">{post.title}</h2>
             <p className="text-gray-600">{post.body}</p>

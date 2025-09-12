@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Nav from "@/components/nav";
+import Footer from "@/components/footer";
 
 
 export default async function Home() {
@@ -26,6 +27,7 @@ export default async function Home() {
         ))}
       </div>
     </div>
+    <Footer/>
     </>
 
   );

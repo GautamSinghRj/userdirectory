@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
+import HeroSection from "@/components/hero-section";
 
 
 export default async function Home() {
@@ -11,6 +12,7 @@ export default async function Home() {
   return (
     <>
     <Nav/>
+    <HeroSection/>
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">My Blog</h1>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import { Card, CardContent } from "@/components/ui/card"
 import Nav from "@/components/nav";
+import Footer from "@/components/footer";
 
 const caller=(url)=>fetch(url).then((res)=>res.json());
 
@@ -32,6 +33,7 @@ export default function ClientPosts(){
         ))}
       </div>
     </div>
+      <Footer/>
     </>
   )
 }

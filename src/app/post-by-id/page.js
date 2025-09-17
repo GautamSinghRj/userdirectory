@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Nav from "@/components/nav"
+import Footer from "@/components/footer";
 
 export default function PostByIdPage() {
   const [id, setId] = useState("")
@@ -58,6 +59,7 @@ export default function PostByIdPage() {
         </Card>
       )}
     </div>
+      <Footer/>
     </>
   )
 }

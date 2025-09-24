@@ -1,34 +1,45 @@
-import Nav from "@/components/nav"
-import { Card, CardContent } from "@/components/ui/card"
-import CommentBox from "./comment-box"
+"use client"
 
-export default async function PostPage({ params }) {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`, {
-        cache: "no-store",
-    })
-    if (!res.ok) {
-        throw new Error("Failed to fetch post")
-    }
-    const post = await res.json()
+import { useEffect, useState } from "react"
+import { Card, CardContent } from "@/components/ui/card"
+
+export default function CommentBox({ postId }) {
+    const [comments, setComments] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        async function fetchComments() {
+            try {
+                const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+                if (!res.ok) throw new Error("Failed to fetch comments")
+                const data = await res.json()
+                setComments(data)
+            } catch (err) {
+                setError(err.message)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchComments()
+    }, [postId])
+
+    if (loading) return <p className="mt-4 text-gray-500">Loading comments...</p>
+    if (error) return <p className="mt-4 text-red-500">Error: {error}</p>
 
     return (
-        <>
-            <Nav />
-            <div className="container mx-auto p-6">
-                <Card>
-                    <CardContent className="p-6">
-                        <img
-                            src={`https://picsum.photos/seed/${post.id}/600/300`}
-                            alt="Random post illustration"
-                            className="w-full h-96 object-cover rounded-md mb-3"
-                        />
-                        <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-                        <p className="text-gray-700 leading-relaxed">{post.body}</p>
-
-                        <CommentBox postId={post.id} />
+        <div className="mt-6">
+            <h2 className="text-xl font-semibold mb-4">Comments</h2>
+            {comments.map((comment) => (
+                <Card key={comment.id} className="mb-3">
+                    <CardContent className="p-4">
+                        <p className="font-medium">{comment.name}</p>
+                        <p className="text-sm text-gray-600">{comment.email}</p>
+                        <p className="mt-2">{comment.body}</p>
                     </CardContent>
                 </Card>
-            </div>
-        </>
+            ))}
+        </div>
     )
 }

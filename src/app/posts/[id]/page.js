@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSession, signIn } from "next-auth/react"
 import Nav from "@/components/nav"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,7 +14,7 @@ export default function PostPage({ params }) {
     const [comments, setComments] = useState([])
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         async function fetchPost() {
             const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
             const data = await res.json()

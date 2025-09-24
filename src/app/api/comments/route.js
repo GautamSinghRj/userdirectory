@@ -22,7 +22,7 @@ export async function POST(req) {
             data: {
                 content,
                 postId,
-                userId: session.user.id, // ✅ taken from logged-in user
+                userId: session.user.id,
             },
             include: { User: true },
         })

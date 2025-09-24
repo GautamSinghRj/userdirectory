@@ -1,6 +1,6 @@
 let posts=[
-    { id: 1, title: "Hello World", body: "This is my first post" },
-    { id: 2, title: "Next.js Rocks", body: "Learning Next.js is fun!" },
+    { id: 100, title: "Hello World", body: "This is my first post" },
+    { id: 101, title: "Next.js Rocks", body: "Learning Next.js is fun!" },
 ];
 
 export async function GET() {

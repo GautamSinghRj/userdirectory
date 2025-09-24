@@ -1,5 +1,8 @@
 import Nav from "@/components/nav";
 import { Card, CardContent } from "@/components/ui/card"
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import {signIn} from "next-auth/react";
 
 export async function generateMetadata({ params }) {
     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
@@ -15,6 +18,33 @@ export default async function PostPage({params}){
     const res=await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
     const post = await res.json();
 
+    async function fetchComments(postId) {
+        const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+        const data = await res.json()
+        setComments(data)
+    }
+
+    async function handleAddComment() {
+        if (!newComment.trim()) return
+        if (!session) {
+            alert("You must be logged in to comment.")
+            return
+        }
+
+        const res = await fetch("/api/comments", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                content: newComment,
+                postId: String(post.id),
+            }),
+        })
+
+        if (res.ok) {
+            setNewComment("")
+            fetchComments(post.id)
+        }
+    }
     return(
       <>
       <Nav />
@@ -28,6 +58,25 @@ export default async function PostPage({params}){
                 />
             <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
             <p className="text-gray-700 leading-relaxed">{post.body}</p>
+
+              {session ? (
+                  <div className="mt-4 flex gap-2">
+                      <Input
+                          placeholder="Add a comment..."
+                          value={newComment}
+                          onChange={(e) => setNewComment(e.target.value)}
+                      />
+                      <Button onClick={handleAddComment}>Post</Button>
+                  </div>
+              ) : (
+                  <Button
+                      variant="outline"
+                      className="mt-4"
+                      onClick={() => signIn("google")}
+                  >
+                      Sign in with Google to comment
+                  </Button>
+              )}
           </CardContent>
         </Card>
       </div>

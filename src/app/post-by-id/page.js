@@ -8,7 +8,7 @@ import Nav from "@/components/nav"
 import Footer from "@/components/footer"
 
 export default function PostByIdPage() {
-  const { data: session } = useSession() // ✅ get Google OAuth session
+  const { data: session } = useSession()
   const [id, setId] = useState("")
   const [post, setPost] = useState(null)
   const [error, setError] = useState(null)

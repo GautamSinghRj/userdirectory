@@ -42,26 +42,6 @@ export default function CommentBox({ postId }) {
     }
 
     return (
-        <div className="mt-6">
-            {session ? (
-                <div className="flex gap-2 mb-4">
-                    <Input
-                        placeholder="Add a comment..."
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                    />
-                    <Button onClick={handleAddComment}>Post</Button>
-                </div>
-            ) : (
-                <Button
-                    variant="outline"
-                    className="mb-4"
-                    onClick={() => signIn("google")}
-                >
-                    Sign in with Google to comment
-                </Button>
-            )}
-
             <div className="mt-6">
                 <h3 className="text-lg font-semibold mb-2">Comments</h3>
                 {comments.length === 0 && <p>No comments yet.</p>}
@@ -95,6 +75,5 @@ export default function CommentBox({ postId }) {
                     </Button>
                 )}
             </div>
-        </div>
     )
 }
